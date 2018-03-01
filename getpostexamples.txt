@@ -1,0 +1,12 @@
+curl -X POST \
+  -H "X-Parse-Application-Id: QXRTROGsVaRn4a3kw4gaFnHGNOsZxXoZ8ULxwZmf" \
+  -H "Content-Type: application/json" \
+  -d '{"score":1337,"playerName":"Sean Plott","cheatMode":false}' \
+  http://localhost:1337/parse/classes/GameScore
+  
+  curl -X GET -H "X-Parse-Application-Id: QXRTROGsVaRn4a3kw4gaFnHGNOsZxXoZ8ULxwZmf" -H "X-Parse-Master-Key: 
+  j9TIxQX3zEHkDPfQszCa6ariYTmZ8JU0RC31BKZK" http://localhost:1337/parse/classes/GameScore
+
+  curl -X POST -H "X-Parse-Application-Id: QXRTROGsVaRn4a3kw4gaFnHGNOsZxXoZ8ULxwZmf" -H "Content-Type: image/jpeg" --data-binary '@myPicture.jpg' /Users/Leesha/Desktop/CrowdCheerFlyer.jpeg
+
+  curl -X GET -H "X-Parse-Application-Id: QXRTROGsVaRn4a3kw4gaFnHGNOsZxXoZ8ULxwZmf" -H "X-Parse-Master-Key: j9TIxQX3zEHkDPfQszCa6ariYTmZ8JU0RC31BKZK" http://localhost:1337/parse/files/pic.jpg
