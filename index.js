@@ -4,9 +4,8 @@
 var express = require('express');
 var ParseServer = require('parse-server').ParseServer;
 var path = require('path');
-var S3Adapter = require('parse-server').S3Adapter;
 
-var databaseUri = process.env.DATABASE_URI || process.env.MONGODB_URI || '';
+var databaseUri = process.env.DATABASE_URI || process.env.MONGODB_URI;
 
 if (!databaseUri) {
   console.log('DATABASE_URI not specified, falling back to localhost.');
@@ -15,18 +14,12 @@ if (!databaseUri) {
 var api = new ParseServer({
   databaseURI: databaseUri || 'mongodb://localhost:27017/dev',
   cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
-  appId: process.env.APP_ID || '',
+  appId: process.env.APP_ID || 'myAppId',
   masterKey: process.env.MASTER_KEY || '', //Add your master key here. Keep it secret!
-  fileKey: process.env.FILE_KEY || '', // For migrated apps, this is necessary to provide access to files already hosted on parse.com
   serverURL: process.env.SERVER_URL || 'http://localhost:1337/parse',  // Don't forget to change to https if needed
-  filesAdapter: new S3Adapter(
-    process.env.AWS_ACCESS_KEY_ID || "",
-    process.env.AWS_SECRET_ACCESS_KEY || "",
-    process.env.BUCKET_NAME || ""
-  )
-  // liveQuery: {
-  //   classNames: ["Posts", "Comments"] // List of classes to support for query subscriptions
-  // }
+  liveQuery: {
+    classNames: ["Posts", "Comments"] // List of classes to support for query subscriptions
+  }
 });
 // Client-keys like the javascript key or the .NET key are not necessary with parse-server
 // If you wish you require them, you can set them as options in the initialization above:
